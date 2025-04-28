@@ -6,15 +6,94 @@
     <title>JS build project</title>
     <!-- styles -->
     <link href="index.css" rel="stylesheet"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-primary">
+  <!-- btn on small size -->
+  <div class="add__new__btn__mobile__only d-sm-block d-md-none">
+  <button class="btn btn-primary d-flex align-items-center gap-3" type="submit" data-bs-toggle="modal" data-bs-target="#AddNewModal">
+    <i class="fa-solid fa-plus m-1"></i>add more items
+  </button>
+</div>
+  <div class="modal fade" id="AddNewModal" tabindex="-1" aria-labelledby="AddNewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="AddNewModalLabel">Add new task</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+             <!-- img link -->
+            <div class="mb-3">
+              <label for="imgURL" class="form-label">Image URL</label>
+              <input type="url" class="form-control" id="imgURL" aria-describedby="imgDesc" placeholder="https://image.com/image.png">
+            </div>
+            <div id="imgDesc" class="form-text">
+              This is optional for you
+            </div>
+            <!-- title -->
+            <div class="mb-3 mt-3">
+              <label for="taskTitle" class="form-label">Task Title</label>
+              <input type="text" class="form-control" id="taskTitle" aria-describedby="titleDesc" placeholder="Task Title!">
+            </div>
+            <div id="titleDesc" class="form-text">
+              <!-- task type -->
+            </div>
+            <div class="mb-3 mt-3">
+              <label for="tags" class="form-label">Task Type</label>
+              <input type="text" class="form-control" id="tags" aria-describedby="typeDesc" placeholder="Task Type!">
+            </div>
+            <div id="typeDesc" class="form-text">
+              </div>
+              <div class="mb-3 mt-3">
+                <label for="taskDesc" class="form-label">Task Description</label>
+                <textarea type="textarea" class="form-control" id="taskDesc" aria-describedby="typeDesc" placeholder="Task Description!" rows="3"></textarea>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+
+  <!-- open task modal -->
+  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body task__modal__body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ -->
+
+      <!-- navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" >
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">JS build</a>
+          <a class="navbar-brand" href="#">Tasky </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -26,7 +105,7 @@
             </ul>
            
             <form class="d-flex" role="search">
-              <button class="btn btn-outline-primary d-flex justify-content-end gap-3" type="submit">
+              <button class="btn btn-primary d-flex align-items-center gap-3" type="button" data-bs-toggle="modal" data-bs-target="#AddNewModal">
                 <i class="fa-solid fa-plus m-1"></i>add more items
               </button>
             </form>
@@ -34,6 +113,7 @@
         </div>
       </nav>
       <div class="container">
+        <!-- search section -->
         <section class="mt-5">
           <div class="row justify-content-center">
             <div class="col-md-6">
@@ -51,8 +131,15 @@
             <!-- </div> -->
           </div>
         </section>
-        <section >
-          <!-- cards sections -->
+                   
+        <!-- cards sections -->
+
+
+        <section class="mt-3" >
+          <div class="row task_contents">
+
+            
+          </div>
         </section>
       </div>
 
