@@ -108,5 +108,20 @@ const updateLocalStorage=()=>{
    if(localStorageCopy) state.tasklist=localStorageCopy.tasks;
    state.tasklist.map((cardDate)=>{
     taskContents.insertAdjacentHTML("beforeend",htmlTaskContent(cardDate));
-   })
- }
+   });
+ };
+//  when we update or when we edit... we need to save 
+ const handleSubmit=(event)=>{
+   const id=`${Date.now()}`;
+   const input={
+    url: document.getElementById("imgURL").value,
+    title: document.getElementById("taskTitle").value,
+    tags: document.getElementById("tags").value,
+    taskDescription: document.getElementById("taskDesc").value,
+   };
+   taskContents.insertAdjacentHTML("beforeend",htmlTaskContent({...input,id,}));
+   
+   state.tasklist.push({...input,id,});
+   updateLocalStorage();
+
+ };
