@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
-<body>
+<body onload="loadInitialData()">
   <!-- btn on small size -->
   <div class="add__new__btn__mobile__only d-sm-block d-md-none">
   <button class="btn btn-primary d-flex align-items-center gap-3" type="submit" data-bs-toggle="modal" data-bs-target="#AddNewModal">
@@ -27,7 +27,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form onsubmit="false">
              <!-- img link -->
             <div class="mb-3">
               <label for="imgURL" class="form-label">Image URL</label>
