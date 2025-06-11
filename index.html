@@ -48,11 +48,11 @@
               <label for="tags" class="form-label">Task Type</label>
               <input type="text" class="form-control" id="tags" aria-describedby="typeDesc" placeholder="Task Type!">
             </div>
-            <div id="typeDesc" class="form-text">
+            <div id="typeDescription" class="form-text">
               </div>
               <div class="mb-3 mt-3">
-                <label for="taskDesc" class="form-label">Task Description</label>
-                <textarea type="textarea" class="form-control" id="taskDesc" aria-describedby="typeDesc" placeholder="Task Description!" rows="3"></textarea>
+                <label for="taskDescription" class="form-label">Task Description</label>
+                <textarea type="textarea" class="form-control" id="taskDescription" aria-describedby="typeDesc" placeholder="Task Description!" rows="3"></textarea>
               </div>
         </div>
         <div class="modal-footer">
@@ -76,12 +76,13 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body task__modal__body">
-          ...
+          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
         </div>
+      </div>
       </div>
     </div>
   </div>
@@ -115,7 +116,7 @@
           <div class="row justify-content-center">
             <div class="col-md-6">
               <div class="input-group flex-nowrap shadow-lg rounded">
-                <input type="search" class="form-control" placeholder="search your task here " aria-label="search task" aria-describedby="addon-wrapping">
+                <input type="search" class="form-control" placeholder="search your task here " aria-label="search task" aria-describedby="addon-wrapping" oninput="searchTask.apply(this.arguments)">
                 <span class="input-group-text" id="addon-wrapping">
                 <i class="fas fa-search"></i>
               </span>
