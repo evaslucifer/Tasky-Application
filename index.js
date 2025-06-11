@@ -76,7 +76,7 @@ const htmlTaskContent = ({id,title,description,type,url})=> `
    </div>
 
 </div>
-`;
+`
 
 // modal body on open task
 const htmlModalContent = ({id,title,description,url})=> {
