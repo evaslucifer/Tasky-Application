@@ -23,7 +23,8 @@ const htmlTaskContent = ({id,title,description,type,url})=> `
      ${ 
        url 
       ?`<img width=100% src=${url} alt='card image' class='card-img-top md-3 rounded-lg'/>`
-      : `<img width=100% src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt='card image' class='card-img-top md-3 rounded-lg'/>`
+      : `<img width=100% src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt='card image' 
+      class='card-img-top md-3 rounded-lg'/>`
 
      }
      <h4 class='card-title task__card__title'>${title}</h4>
@@ -35,7 +36,8 @@ const htmlTaskContent = ({id,title,description,type,url})=> `
     </div>
 
     <div class='card-footer'>
-      <button type='button' class='btn btn-outline-primary float-right' data-bs-toggle="modal" data-bs-target="#showTask" onclick='openTask.apply(this,arguments)' id=${id}>open task</button>
+      <button type='button' class='btn btn-outline-primary float-right' data-bs-toggle="modal" data-bs-target="#showTask"
+       onclick='openTask.apply(this,arguments)' id=${id}>open task</button>
     </div>
 
 
@@ -55,7 +57,8 @@ const htmlModalContent = ({id,title,description,url})=> {
   //  `<img width=100% src=${url} alt='card image' class='img-fluid place__holder__image mb-3'/>`
   url 
     ? `<img width=100% src=${url} alt='card image' class='card-img-top md-3 rounded-lg'/>`
-    : `<img width=100% src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt='card image' class='card-img-top md-3 rounded-lg'/>`
+    : `<img width=100% src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt='card image' 
+    class='card-img-top md-3 rounded-lg'/>`
     }
     <strong class='text-muted text-sm'>Created on: ${date.toDateString()}</strong>
     <h2 class='my-3'>${title}</h2>
