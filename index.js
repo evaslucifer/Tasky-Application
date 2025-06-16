@@ -1,37 +1,4 @@
-// // var state={
-// //     tasklist:[
-// //         {
-// //             imageURL:"",
-// //             taskTitle:"",
-// //             taskType:"",
-// //             taskDesc:"",
-// //         },
-// //         {
-// //             imageURL:"",
-// //             taskTitle:"",
-// //             taskType:"",
-// //             taskDesc:"",
-// //         },
-// //         {
-// //             imageURL:"",
-// //             taskTitle:"",
-// //             taskType:"",
-// //             taskDesc:"",
-// //         },
-// //         {
-// //             imageURL:"",
-// //             taskTitle:"",
-// //             taskType:"",
-// //             taskDesc:"",
-// //         },
-// //         {
-// //             imageURL:"",
-// //             taskTitle:"",
-// //             taskType:"",
-// //             taskDesc:"",
-// //         }
-// // ]
-// // };
+
 // backup storage
 const state={
     tasklist:[],
