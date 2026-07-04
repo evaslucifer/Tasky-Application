@@ -34,7 +34,7 @@ The project follows a full-stack architecture with a separate frontend and backe
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Frontend
 
@@ -67,7 +67,7 @@ The project follows a full-stack architecture with a separate frontend and backe
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```
 Tasky-Application/
@@ -95,7 +95,7 @@ Tasky-Application/
 
 ---
 
-## ⚙️ Installation
+##  Installation
 
 Clone the repository
 
@@ -132,7 +132,7 @@ npm run dev
 
 ---
 
-## 📖 API
+##  API
 
 The backend exposes REST APIs for managing users and tasks.
 
@@ -147,7 +147,7 @@ Example endpoints:
 
 ---
 
-## 🎯 Future Enhancements
+##  Future Enhancements
 
 - Email Verification
 - Password Reset
@@ -165,25 +165,25 @@ Example endpoints:
 
 ---
 
-## 📸 Screenshots
+##  Screenshots
 
 Screenshots and GIFs of the application will be added here.
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions, suggestions, and improvements are welcome. Feel free to fork the repository and submit a pull request.
 
 ---
 
-## 📄 License
+##  License
 
 This project is developed for learning and portfolio purposes.
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
 **Himanish Rao**
 

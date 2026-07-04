@@ -49,9 +49,9 @@ const htmlTaskContent = ({id,title,description,type,url})=> `
 
 // modal body on open task
 const htmlModalContent = ({id,title,description,url})=> {
-  const date=new Date(parseInt(id));
+  const date=new Date((createdAt));
   return `
-   <div id=${id}>
+   <div id=${_id}>
    ${
   //   url &&
   //  `<img width=100% src=${url} alt='card image' class='img-fluid place__holder__image mb-3'/>`
