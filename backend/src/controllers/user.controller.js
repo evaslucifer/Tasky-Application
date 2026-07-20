@@ -13,33 +13,41 @@ import { ApiResponse } from "../utils/apiResponse.js";
 //check for user creation
 //return res
 const registerUser = asyncHandler(async (req, res) => {
+  console.log("1. Request received");
   const { username, email, password } = req.body;
+  console.log("2. Body parsed");
+
   if ([username, email, password].some((field) => field?.trim() === "")) {
     throw new ApiError(400, "all fields are required");
   }
   const existedUser = await User.findOne({
     $or: [{ username }, { email }],
   });
+  console.log("3. Existing user checked");
+
   if (existedUser) {
     throw new ApiError(409, "user with this email or username already exist");
   }
-  const avatarLocalPath = req.files?.avatar?.[0]?.path;
-  const coverImageLocalPath = req?.files?.coverImage?.[0]?.path;
-  if (!avatarLocalPath) {
-    throw new ApiError(400, "avatar file is required");
+  const profilePicLocalPath = req.files?.profilePic?.[0]?.path;
+
+  if (!profilePicLocalPath) {
+    throw new ApiError(400, "profilePic file is required");
   }
-  const avatar = await uploadOncloudinary(avatarLocalPath);
-  const coverImage = await uploadOncloudinary(coverImageLocalPath);
-  if (!avatar) {
-    throw new ApiError(400, "avatar file is required");
+  const profilePic = await uploadOncloudinary(profilePicLocalPath);
+  console.log("4. Avatar uploaded");
+  console.log("Avatar value:", profilePic);
+  console.log("Avatar type:", typeof profilePic);
+
+  if (!profilePic) {
+    throw new ApiError(400, "profilePic file is required");
   }
   const user = await User.create({
     username: username.toLowerCase(),
     email,
     password,
-    avatar: avatar.url,
-    coverImage: coverImage?.url || "",
+    profilePic: profilePic.secure_url,
   });
+  console.log("5. User created");
   const createdUser = await User.findById(user._id).select(
     "-password -refreshToken"
   );
