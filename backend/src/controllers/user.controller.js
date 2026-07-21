@@ -23,7 +23,6 @@ const registerUser = asyncHandler(async (req, res) => {
   const existedUser = await User.findOne({
     $or: [{ username }, { email }],
   });
-  console.log("3. Existing user checked");
 
   if (existedUser) {
     throw new ApiError(409, "user with this email or username already exist");
@@ -34,9 +33,6 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(400, "profilePic file is required");
   }
   const profilePic = await uploadOncloudinary(profilePicLocalPath);
-  console.log("4. Avatar uploaded");
-  console.log("Avatar value:", profilePic);
-  console.log("Avatar type:", typeof profilePic);
 
   if (!profilePic) {
     throw new ApiError(400, "profilePic file is required");
@@ -47,7 +43,7 @@ const registerUser = asyncHandler(async (req, res) => {
     password,
     profilePic: profilePic.secure_url,
   });
-  console.log("5. User created");
+  // console.log("5. User created");
   const createdUser = await User.findById(user._id).select(
     "-password -refreshToken"
   );
