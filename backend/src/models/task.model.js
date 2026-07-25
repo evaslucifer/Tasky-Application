@@ -8,8 +8,9 @@ const taskSchema = new Schema(
       trim: true,
     },
     owner: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
+      required: true,
     },
     description: {
       type: String,
@@ -25,11 +26,7 @@ const taskSchema = new Schema(
       type: String,
       default: "",
     },
-    title: {
-      type: String,
-      required: true,
-      trim: true,
-    },
+
     isCompleted: {
       type: Boolean,
       default: false,
