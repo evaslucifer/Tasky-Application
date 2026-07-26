@@ -1,8 +1,26 @@
 import { Router } from "express";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
-import { createTask, getAllTasks } from "../controllers/task.controller.js";
+import {
+  createTask,
+  deleteTask,
+  getAllTasks,
+  getTaskByID,
+  updateTask,
+} from "../controllers/task.controller.js";
 
 const router = Router();
-router.route("/create-task").post(verifyJWT, createTask);
-router.route("/getAllTasks").get(verifyJWT, getAllTasks);
+//create task route
+//get all tasks route
+router.route("/").post(verifyJWT, createTask).get(verifyJWT, getAllTasks);
+
+
+//get all tasks by id route
+//update task route
+//delete task route
+
+router
+  .route("/:taskID")
+  .get(verifyJWT, getTaskByID)
+  .patch(verifyJWT, updateTask)
+  .delete(verifyJWT, deleteTask);
 export default router;

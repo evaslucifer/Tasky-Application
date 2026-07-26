@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { Task } from "../models/task.model.js";
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
@@ -47,4 +48,94 @@ const getAllTasks = asyncHandler(async (req, res) => {
   }).sort({ createdAt: -1 });
   return res.status(200).json(new ApiResponse(200, tasks, "success"));
 });
-export { createTask, getAllTasks   };
+const getTaskByID = asyncHandler(async (req, res) => {
+  // get taskId from params
+  // validate taskId
+  // find task
+  // make sure task belongs to logged-in user
+  // if task not found throw error
+  // return success response
+
+  const { taskID } = req.params;
+  
+
+  if (!mongoose.Types.ObjectId.isValid(taskID)) {
+    throw new ApiError(400, "Invalid Task ID");
+  }
+
+  const task = await Task.findOne({
+    _id: taskID,
+    owner: req.user._id,
+  });
+  if (!task) {
+    throw new ApiError(404, "task not found");
+  }
+  return res.status(200).json(new ApiResponse(200, task, "success"));
+});
+const updateTask = asyncHandler(async (req, res) => {
+  // get taskId
+  // validate ObjectId
+  // extract editable fields
+  // if no editable fields are provided
+  // throw ApiError(400)
+  // update only the provided fields
+  // save/update
+  // return updated task
+
+  const { taskID } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(taskID)) {
+    throw new ApiError(400, "Invalid task id");
+  }
+  const { title, description, type, url, isCompleted } = req.body;
+  const allowedFields = ["title", "description", "type", "url", "isCompleted"];
+
+  const hasUpdate = allowedFields.some(
+    (field) => req.body[field] !== undefined
+  );
+
+  if (!hasUpdate) {
+    throw new ApiError(400, "At least one field is required");
+  }
+  const updateFields = {};
+
+  if (title !== undefined) updateFields.title = title;
+  if (description !== undefined) updateFields.description = description;
+  if (type !== undefined) updateFields.type = type;
+  if (url !== undefined) updateFields.url = url;
+  if (isCompleted !== undefined) updateFields.isCompleted = isCompleted;
+  const updatedTask = await Task.findOneAndUpdate(
+    { _id: taskID, owner: req.user._id },
+    { $set: updateFields },
+    { new: true, runValidators: true }
+  );
+  if (!updatedTask) {
+    throw new ApiError(404, "Task not found");
+  }
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, updatedTask, "Task updated successfully"));
+});
+const deleteTask = asyncHandler(async (req, res) => {
+  // get taskId from params
+  // validate ObjectId
+  // find the task that belongs to the logged-in user
+  // if task doesn't exist, throw ApiError(404)
+  // delete the task
+  // return success response
+  const { taskID } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(taskID)) {
+    throw new ApiError(400, "Invalid task ID");
+  }
+  const deletedTask = await Task.findOneAndDelete({
+    _id: taskID,
+    owner: req.user._id,
+  });
+  if (!deletedTask) {
+    throw new ApiError(404, "Task not found");
+  }
+  return res
+    .status(200)
+    .json(new ApiResponse(200, deletedTask, "Task deleted successfully"));
+});
+export { createTask, getAllTasks, getTaskByID, updateTask, deleteTask };
