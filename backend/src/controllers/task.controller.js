@@ -57,7 +57,6 @@ const getTaskByID = asyncHandler(async (req, res) => {
   // return success response
 
   const { taskID } = req.params;
-  
 
   if (!mongoose.Types.ObjectId.isValid(taskID)) {
     throw new ApiError(400, "Invalid Task ID");
@@ -138,4 +137,31 @@ const deleteTask = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, deletedTask, "Task deleted successfully"));
 });
-export { createTask, getAllTasks, getTaskByID, updateTask, deleteTask };
+const toggleTaskStatus = asyncHandler(async (req, res) => {
+  const { taskId } = req.params;
+
+  const task = await Task.findOne({
+    _id: taskId,
+    owner: req.user._id,
+  });
+
+  if (!task) {
+    throw new ApiError(404, "Task not found");
+  }
+
+  task.isCompleted = !task.isCompleted;
+
+  await task.save();
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, task, "Task status updated successfully"));
+});
+export {
+  createTask,
+  getAllTasks,
+  getTaskByID,
+  updateTask,
+  deleteTask,
+  toggleTaskStatus,
+};

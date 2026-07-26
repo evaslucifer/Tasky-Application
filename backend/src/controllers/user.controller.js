@@ -32,9 +32,10 @@ const registerUser = asyncHandler(async (req, res) => {
   //check for user creation
   //return res
   const { username, email, password } = req.body;
-
-  if ([username, email, password].some((field) => field?.trim() === "")) {
-    throw new ApiError(400, "all fields are required");
+  if (
+    [username, email, password].some((field) => !field || field.trim() === "")
+  ) {
+    throw new ApiError(400, "All fields are required");
   }
   const existedUser = await User.findOne({
     $or: [{ username }, { email }],
@@ -184,5 +185,17 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     throw new ApiError(401, error?.message || "invalid refresh token");
   }
 });
+//current user
+const getCurrentUser = asyncHandler(async (req, res) => {
+  return res
+    .status(200)
+    .json(new ApiResponse(200, req.user, "Current user fetched successfully"));
+});
 
-export { registerUser, loginUser, logoutUser, refreshAccessToken };
+export {
+  registerUser,
+  loginUser,
+  logoutUser,
+  refreshAccessToken,
+  getCurrentUser,
+};
